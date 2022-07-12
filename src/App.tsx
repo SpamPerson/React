@@ -5,7 +5,6 @@ import { Provider } from 'react-redux';
 import { testStore } from './testStore/store';
 import Counter from './components/Counter';
 import CounterTwo from './components/CounterTwo';
-import Utilize from './components/Nav';
 import { utilizeStore } from './utilizeStore/store';
 import Wrapper from './components/Wrapper';
 

@@ -1,6 +1,5 @@
 import { PInfoStatus } from "./type";
 
-
 export let data:PInfoStatus[] = [
     {
         id:'01',
