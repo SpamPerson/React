@@ -1,16 +1,16 @@
-import { PivotLinkFormat } from "@fluentui/react";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
 import { data } from "./data";
-import { UtilizeRootState } from "./store";
 import { PInfoStatus } from "./type";
 
 
-const initialState:PInfoStatus[] = data
+const initialState:PInfoStatus[] = data // state initial value
 
 export const utilizeSlice = createSlice({
     name:'utilize',
     initialState,
     reducers: {
+        // Change isView Reducer
         isView: (state:PInfoStatus[], actions:PayloadAction<string>) => {
            let newState:PInfoStatus[] = [];
            state.forEach(x => {
@@ -34,6 +34,7 @@ export const utilizeSlice = createSlice({
            });
            return newState;
         },
+        // Change color Reducer
         changeColor: (state:PInfoStatus[],actions:PayloadAction<PInfoStatus>) => {
             let newState:PInfoStatus[] = [];
             state.forEach(x => {
@@ -57,6 +58,7 @@ export const utilizeSlice = createSlice({
             });
            return newState;
         },
+        // Change Name Reducer
         changeName: (state:PInfoStatus[],actions:PayloadAction<PInfoStatus>) => {
             let newState:PInfoStatus[] = [];
             state.forEach(x => {

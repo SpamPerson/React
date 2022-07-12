@@ -1,11 +1,13 @@
-import { Stack, StackItem } from "@fluentui/react";
 import * as React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+
+import { Stack } from "@fluentui/react/lib/Stack";
+
 import { UtilizeRootState } from "../utilizeStore/store";
 
+
 const Viewer: React.FC = () => {
-   const utilize = useSelector((state: UtilizeRootState) => state.utilize);
-   const dispatch = useDispatch();
+   const utilize = useSelector((state: UtilizeRootState) => state.utilize); // 
 
    return (
       <Stack>

@@ -1,22 +1,19 @@
-import {
-   BaseButton,
-   Button,
-   Callout,
-   DefaultButton,
-   DirectionalHint,
-   IContextualMenuProps,
-   Stack,
-   SwatchColorPicker,
-   TextField,
-} from "@fluentui/react";
-import { useBoolean } from "@fluentui/react-hooks";
 import * as React from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+
+import { DefaultButton } from "@fluentui/react/lib/Button";
+import { Stack } from "@fluentui/react/lib/Stack";
+import { SwatchColorPicker } from "@fluentui/react/lib/SwatchColorPicker";
+import { TextField } from "@fluentui/react/lib/TextField";
+
 import { UtilizeRootState } from "../utilizeStore/store";
 import { PInfoStatus } from "../utilizeStore/type";
 import { changeColor, changeName, isView } from "../utilizeStore/utilizeSlice";
 
+/**
+ * * Color List
+ */
 const colorExample = [
    { id: "a", label: "red", color: "#a4262c" },
    { id: "b", label: "orange", color: "#ca5010" },
@@ -33,10 +30,17 @@ const colorExample = [
 ];
 
 const Nav: React.FC = () => {
-   const utilize = useSelector((state: UtilizeRootState) => state.utilize);
-   const dispatch = useDispatch();
-   const [isColorInput, setIsColorInput] = React.useState<boolean>(false);
 
+   const utilize = useSelector((state: UtilizeRootState) => state.utilize); // redux state hook
+   const dispatch = useDispatch(); // dispatch hook
+
+   /**
+    * * Change Color
+    * @param event button event
+    * @param colorId color id
+    * @param color color
+    * @param id data id
+    */
    const onChangeColor = (event: React.FormEvent<HTMLElement>, colorId: string | undefined, color: string | undefined, id: string) => {
       let payload: PInfoStatus = {
          id: id,
@@ -45,6 +49,12 @@ const Nav: React.FC = () => {
       dispatch(changeColor(payload));
    };
 
+   /**
+    * * Change Data Name
+    * @param event textField event
+    * @param newValue text Value
+    * @param id data id
+    */
    const onChangeName = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string | undefined, id?: string) => {
       let payload: PInfoStatus = {
          id: id,
@@ -61,7 +71,7 @@ const Nav: React.FC = () => {
          {utilize.map((v, i) => (
             <Stack tokens={{childrenGap:5}} key={v.id} style={{padding:'10px', marginTop:5, width:'100%', border:`1px solid ${v.color}`}}>
                <span style={{fontSize:20,textAlign:'center',fontWeight:'bold'}}>Name : {v.name}</span>
-               <DefaultButton key={v.id} text={v.color} onClick={() => setIsColorInput(!isColorInput)} />
+               <DefaultButton key={v.id} text={v.color} style={{color:v.color}}/>
                <DefaultButton text={v.isView ? "Y" : "N"} onClick={() => dispatch(isView(v.id!))} />
                <SwatchColorPicker
                   colorCells={colorExample}
@@ -70,7 +80,7 @@ const Nav: React.FC = () => {
                   cellBorderWidth={5}
                   onChange={(e, i, c) => onChangeColor(e, i, c, v.id!)}
                />
-               <TextField placeholder="이름 변경" onChange={(e,n)=>onChangeName(e,n,v.id!)}/>
+               <TextField placeholder="Name Change" onChange={(e,n)=>onChangeName(e,n,v.id!)}/>
             </Stack>
          ))}
       </Stack>

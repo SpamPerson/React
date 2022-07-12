@@ -1,7 +1,10 @@
-import { DefaultButton, Stack } from '@fluentui/react';
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+
+import { DefaultButton } from '@fluentui/react/lib/Button';
+import { Stack } from '@fluentui/react/lib/Stack';
+
 import { initialization } from '../testStore/counterSlice';
 import { TestRootState } from '../testStore/store';
 

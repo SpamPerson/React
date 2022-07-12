@@ -1,19 +1,26 @@
 import * as React from 'react';
-import { DefaultButton, Stack } from '@fluentui/react';
-import {initializeIcons} from '@fluentui/font-icons-mdl2';
 import { Provider } from 'react-redux';
+
+import { Stack } from '@fluentui/react/lib/Stack';
+import { DefaultButton } from '@fluentui/react/lib/Button';
+import {initializeIcons} from '@fluentui/font-icons-mdl2';
+
 import { testStore } from './testStore/store';
 import Counter from './components/Counter';
 import CounterTwo from './components/CounterTwo';
 import { utilizeStore } from './utilizeStore/store';
 import Wrapper from './components/Wrapper';
 
-initializeIcons();
+
+initializeIcons(); // Fluent UI Icons
 
 export const App: React.FC = () => {
-  const [isTest, setIsTest] = React.useState<boolean>(false);
-  const [isUtilize, setIsUtilize] = React.useState<boolean>(false);
+  const [isTest, setIsTest] = React.useState<boolean>(false); // Test Component visibility
+  const [isUtilize, setIsUtilize] = React.useState<boolean>(false); // Utilize Component visibility 
 
+  /**
+   * * When Test button Click
+   */
   const onClickTest = () => {
     setIsTest(!isTest)
     if(isUtilize) {
@@ -21,6 +28,9 @@ export const App: React.FC = () => {
     }
   }
 
+  /**
+   * * When Utilize button Click
+   */
   const onClickUtilize = () => {
     setIsUtilize(!isUtilize)
     if(isTest) {

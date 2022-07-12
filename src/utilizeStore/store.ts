@@ -1,7 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import  utilizeReducer  from "./utilizeSlice";
 
-
 export const utilizeStore = configureStore({
     reducer:{
         utilize: utilizeReducer,

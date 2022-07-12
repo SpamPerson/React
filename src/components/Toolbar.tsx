@@ -1,12 +1,15 @@
-import { ColorPicker, ColorPickerBase, PrimaryButton, Stack } from "@fluentui/react";
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+import { PrimaryButton } from "@fluentui/react/lib/Button";
+import { Stack } from "@fluentui/react/lib/Stack";
+
 import { UtilizeRootState } from "../utilizeStore/store";
 import { isView } from "../utilizeStore/utilizeSlice";
 
 const Toolbar: React.FC = () => {
-   const utilize = useSelector((state: UtilizeRootState) => state.utilize);
-   const dispatch = useDispatch();
+   const utilize = useSelector((state: UtilizeRootState) => state.utilize); // state redux hook
+   const dispatch = useDispatch(); // dispatch redux hook
 
    return (
       <Stack

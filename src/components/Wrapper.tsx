@@ -1,8 +1,11 @@
-import { Stack } from "@fluentui/react";
 import * as React from "react";
+
+import { Stack } from "@fluentui/react/lib/Stack";
+
 import Toolbar from "./Toolbar";
 import Nav from "./Nav";
 import Viewer from "./Viewer";
+
 
 const Wrapper: React.FC = () => {
    return (
