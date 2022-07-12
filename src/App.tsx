@@ -5,8 +5,9 @@ import { Provider } from 'react-redux';
 import { testStore } from './testStore/store';
 import Counter from './components/Counter';
 import CounterTwo from './components/CounterTwo';
-import Utilize from './components/Utilize';
+import Utilize from './components/Nav';
 import { utilizeStore } from './utilizeStore/store';
+import Wrapper from './components/Wrapper';
 
 initializeIcons();
 
@@ -14,16 +15,30 @@ export const App: React.FC = () => {
   const [isTest, setIsTest] = React.useState<boolean>(false);
   const [isUtilize, setIsUtilize] = React.useState<boolean>(false);
 
+  const onClickTest = () => {
+    setIsTest(!isTest)
+    if(isUtilize) {
+      setIsUtilize(false)
+    }
+  }
+
+  const onClickUtilize = () => {
+    setIsUtilize(!isUtilize)
+    if(isTest) {
+      setIsTest(false)
+    }
+  }
+
   return (
     <Stack>
       <Stack.Item>
         <DefaultButton
           text='Test'
-          onClick={()=>{setIsTest(!isTest)}}
+          onClick={onClickTest}
         />
         <DefaultButton
           text='Utilize'
-          onClick={()=>{setIsUtilize(!isUtilize)}}
+          onClick={onClickUtilize}
         />
       </Stack.Item>
       <Stack.Item hidden={!isTest}>
@@ -34,7 +49,7 @@ export const App: React.FC = () => {
       </Stack.Item>
       <Stack.Item hidden={!isUtilize}>
         <Provider store={utilizeStore}>
-          <Utilize />
+          <Wrapper/>
         </Provider>
       </Stack.Item>
     </Stack>
