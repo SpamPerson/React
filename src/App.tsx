@@ -6,10 +6,11 @@ import { DefaultButton } from '@fluentui/react/lib/Button';
 import {initializeIcons} from '@fluentui/font-icons-mdl2';
 
 import { testStore } from './testStore/store';
-import Counter from './components/Counter';
-import CounterTwo from './components/CounterTwo';
+import Counter from './components/test/Counter';
 import { utilizeStore } from './utilizeStore/store';
-import Wrapper from './components/Wrapper';
+import CounterTwo from './components/test/CounterTwo';
+import Wrapper from './components/utilize/Wrapper';
+
 
 
 initializeIcons(); // Fluent UI Icons

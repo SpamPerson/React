@@ -7,9 +7,9 @@ import { Stack } from "@fluentui/react/lib/Stack";
 import { SwatchColorPicker } from "@fluentui/react/lib/SwatchColorPicker";
 import { TextField } from "@fluentui/react/lib/TextField";
 
-import { UtilizeRootState } from "../utilizeStore/store";
-import { PInfoStatus } from "../utilizeStore/type";
-import { changeColor, changeName, isView } from "../utilizeStore/utilizeSlice";
+import { UtilizeRootState } from "../../utilizeStore/store";
+import { PInfoStatus } from "../../utilizeStore/type";
+import { changeColor, changeName, isView } from "../../utilizeStore/utilizeSlice";
 
 /**
  * * Color List
@@ -30,7 +30,6 @@ const colorExample = [
 ];
 
 const Nav: React.FC = () => {
-
    const utilize = useSelector((state: UtilizeRootState) => state.utilize); // redux state hook
    const dispatch = useDispatch(); // dispatch hook
 
@@ -59,19 +58,23 @@ const Nav: React.FC = () => {
       let payload: PInfoStatus = {
          id: id,
          name: newValue,
-      }
+      };
       dispatch(changeName(payload));
-   }
+   };
 
    return (
       <Stack>
-         <Stack.Item style={{fontSize:'30px', textAlign:'center'}}>
+         <Stack.Item style={{ fontSize: "30px", textAlign: "center" }}>
             <h1>Nav</h1>
          </Stack.Item>
          {utilize.map((v, i) => (
-            <Stack tokens={{childrenGap:5}} key={v.id} style={{padding:'10px', marginTop:5, width:'100%', border:`1px solid ${v.color}`}}>
-               <span style={{fontSize:20,textAlign:'center',fontWeight:'bold'}}>Name : {v.name}</span>
-               <DefaultButton key={v.id} text={v.color} style={{color:v.color}}/>
+            <Stack
+               tokens={{ childrenGap: 5 }}
+               key={v.id}
+               style={{ padding: "10px", marginTop: 5, width: "100%", border: `1px solid ${v.color}` }}
+            >
+               <span style={{ fontSize: 20, textAlign: "center", fontWeight: "bold" }}>Name : {v.name}</span>
+               <DefaultButton key={v.id} text={v.color} style={{ color: v.color }} />
                <DefaultButton text={v.isView ? "Y" : "N"} onClick={() => dispatch(isView(v.id!))} />
                <SwatchColorPicker
                   colorCells={colorExample}
@@ -80,7 +83,7 @@ const Nav: React.FC = () => {
                   cellBorderWidth={5}
                   onChange={(e, i, c) => onChangeColor(e, i, c, v.id!)}
                />
-               <TextField placeholder="Name Change" onChange={(e,n)=>onChangeName(e,n,v.id!)}/>
+               <TextField placeholder="Name Change" onChange={(e, n) => onChangeName(e, n, v.id!)} />
             </Stack>
          ))}
       </Stack>
